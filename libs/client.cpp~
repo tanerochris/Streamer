@@ -7,7 +7,7 @@
 #include<stdlib.h>
 #include<errno.h>
 #include<string.h>
-#include "include/commands.h"
+#include "../include/commands.h"
 #define MAXHOSTNAME 256
 
 using namespace std;
@@ -67,10 +67,10 @@ class Client{
 			} else return socket_id;
 
 	}
-friend command(string  commandLine);
+friend void command(std::string  commandLine);
 	 void communicate(){
 			//we connect to the server
-            string command;			
+            string commandLine;			
 			int bytesRead;	
 			char buffer[512];
             strcpy(buffer,"CONNECT me please");
@@ -80,7 +80,7 @@ friend command(string  commandLine);
 			buf[bytesRead] = (char)NULL;
 			cout<<buf<<endl;
 			while(1){
-				string commandLine;
+				
                 getline(cin,commandLine);
 			    command(commandLine);
 			}
@@ -93,7 +93,7 @@ Client client = Client();
 return 0;
 
 }
-void command(string  commandLine){
+void command(std::string  commandLine){
    //we get the first word
   
 
